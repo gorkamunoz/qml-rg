@@ -41,7 +41,7 @@ For a sufficiently engaging theoretical introduction to machine learning, the bo
 It ships with most of the scientific and machine learning ecosystem around Python.
 It includes [Scikit-learn](http://scikit-learn.org/), which is excellent for prototyping machine learning models.
 For scalable deep learning, [Keras](https://keras.io/) is recommended: it can transparently change between TensorFlow and Theano as back-ends.
-[QuTiP](http://qutip.org/) is an excellent quantum simulation library, and with the latest version (4.0.2), it is [reasonably straightforward](http://qutip.org/docs/4.0.2/installation.html#platform-independent-installation) to install it in Anaconda with [conda-forge](https://conda-forge.github.io/).
+[QuTiP](http://qutip.org/) is an excellent quantum simulation library, and with the latest version (4.1), it is [reasonably straightforward](http://qutip.org/docs/4.1/installation.html#platform-independent-installation) to install it in Anaconda with [conda-forge](https://conda-forge.github.io/).
 QuTiP is somewhat limited in scalability, so perhaps it is worth checking out other simulators, such as [ProjectQ](http://projectq.ch/).
 
 As for [Julia](http://julialang.org/), the [JuliaML](https://github.com/JuliaML) project collects most of the machine learning efforts.
@@ -189,7 +189,7 @@ Meeting 7
 ---------
 10.00-11.30, 6 April 2017, Seminar Room (201).
 
-Paper:
+Papers:
 
 - Srivastava, N.; Hinton, G. E.; Krizhevsky, A.; Sutskever, I. & Salakhutdinov, R. [Dropout: a simple way to prevent neural networks from overfitting](http://jmlr.org/papers/v15/srivastava14a.html). *Journal of Machine Learning Research*, 2014, 15, 1929-1958. This is a great example of how regularization is done in deep learning. For a prehistoric paper on regularizing neural networks, read [Optimal Brain Damage](https://papers.nips.cc/paper/250-optimal-brain-damage) from 1989.
 
@@ -198,3 +198,51 @@ Paper:
 Coding exercise:
 
 - Simulate a full quantum support vector machine. It has many components, so you might want to consider distributing the workload across the programming groups. For an example on the HHL, look at [this notebook](https://github.com/mariaschuld/phdthesis/blob/master/QLSE%20algorithm.ipynb). Once you have the simulation ready, downsample the APS captcha collection to a ridiculously low resolution (say, 2x2), and train your QSVM on the collection. You could also use a classical autoencoder instead of raw downsampling. Or a quantum one.
+
+Tutorial 4
+----------
+16.00-17.30, 18 April 2017, Yellow Lecture Room (247).
+
+The tutorial will be on advanced data science, covering data collection, filtering, cleaning, and visual analysis. We will study whether arXiv metadata alone is predictive enough to tell the impact factor of the journal where the manuscript will be published.
+
+Meeting 8
+---------
+10.00-11.30, 20 April 2017, Seminar Room (201).
+
+Papers:
+
+- Sutskever, I.; Vinyals, O. & Le, Q. V. [Sequence to Sequence Learning with Neural Networks](http://papers.nips.cc/paper/5346-sequence-to-sequence-learning-with-neural-networks). *Advances in Neural Information Processing Systems*, 2014, 27, 3104-3112. [Long short-term memory](https://dx.doi.org/10.1162%2Fneco.1997.9.8.1735) has been used for two decades for sequence learning, and this paper makes it deep.
+
+- Schuld, M.; Fingerhuth, M. & Petruccione, F. [Quantum machine learning with small-scale devices: Implementing a distance-based classifier with a quantum interference circuit](https://arxiv.org/abs/1703.10793). *arXiv:1703.10793*, 2017. There is no connection to the classical paper, but it just came out and it is a really fun paper. It flips the perspective: instead of trying to come up with an abstract formulation of a quantum-enhanced learning protocol that needs a million qubits, a universal quantum computer, a QRAM, plus an oracle just in case, this manuscript takes the IBM Quantum Experience as the starting point and looks at what kind of learning can be done with it.
+
+Coding exercise:
+
+- Do what everyone who learns machine learning coming from science background does first: predict stock prices. Grab a data set (e.g. [Dow Jones Index](https://archive.ics.uci.edu/ml/datasets/Dow+Jones+Index)) and unleash a [phased LSTM](https://github.com/dannyneil/public_plstm) on it. The [paper on phased LSTMs](https://arxiv.org/abs/1610.09513) was published on NIPS last year, trying to address mid-term memory. Ordinary LSTMs are routinely deployed on stock prices, for instance, see [this kernel](https://www.kaggle.com/pablocastilla/d/dgawlik/nyse/predict-stock-prices-with-lstm) on Kaggle. I take a 10% cut if you make money on this.
+
+Meeting 9
+---------
+10.00-11.30, 27 April 2017, Seminar Room (201).
+
+Paper:
+
+- Wattenberg, M.; Viégas, F. & Johnson, I. [How to Use t-SNE Effectively](https://doi.org/10.23915/distill.00002). *Distill*, 2016. Manifold learning as it is known, took off with [Isomap](https://doi.org/10.1126/science.290.5500.2319), although there were some precursors to it, like [self-organizing maps](https://en.wikipedia.org/wiki/Self-organizing_map), that used a two-dimensional grid of neurons to do an embedding. The original [t-SNE paper](http://www.jmlr.org/papers/v9/vandermaaten08a.html) appeared in 2008, and it became the most popular manifold learning method. It is, however, not easy to get it right, and this interactive paper gives insights on the inner workings of the algorithm. [Add the Jonker-Volgenant algorithm](https://blog.sourced.tech/post/lapjv/), and you have visualizing superpowers.
+
+Coding exercise:
+
+- Assume that cats and dogs lie on a high-dimensional manifold. Get the images from the [CIFAR10](https://www.cs.toronto.edu/~kriz/cifar.html) data set. Embed the manifold in two-dimensions with a globally optimal method (SVD or MDS), and three local methods (Isomap, spectral embedding, and t-SNE). Plot sample images along with the actual points. Scikit-learn has a [handy tutorial](http://scikit-learn.org/stable/modules/manifold.html) on this. There is another [awesome explanation](https://colah.github.io/posts/2014-10-Visualizing-MNIST/) in 2 and 3D. Then do the same thing, but first train a CNN on the images, and visualize the last representation layer before the ordinary FNN part. [Here is](https://blog.keras.io/how-convolutional-neural-networks-see-the-world.html) a tutorial on the raw output, and [here is](https://colah.github.io/posts/2015-01-Visualizing-Representations/) a blog post that uses manifold learning to visualize the abstract representation. Following [this comment](https://github.com/peterwittek/qml-rg/commit/94af3599969d04c63a0bbec2a3ab8f40c40f1ab6#commitcomment-21929565), it is a good idea to pull off a pre-trained model from [keras.applications](https://keras.io/applications/).
+
+Tutorial 5
+----------
+16.00-17.30, 02 May 2017, Yellow Lecture Room (247).
+
+We will go through the different functions of Kaggle, promoting you from [Novice to Contributor](https://www.kaggle.com/progression). It is assumed that you are able to solve the exercises given in the first four tutorials.
+
+Meeting 10
+---------
+11.00-13.00, 04 May 2017, Yellow Lecture Room (247).
+
+Papers:
+
+- Zheng, S.; Jayasumana, S.; Romera-Paredes, B.; Vineet, V.; Su, Z.; Du, D.; Huang, C. & Torr, P. H. S. [Conditional Random Fields as Recurrent Neural Networks](https://arxiv.org/abs/1502.03240). *Proceedings of ICCV-15, International Conference on Computer Vision*, 2015, 1529-1537. This is an important paper that draws a parallel between probabilistic graphical models (here Markov networks and conditional random fields) and neural networks.
+
+- Benedetti, M.; Realpe-Gómez, J.; Biswas, R. & Perdomo-Ortiz, A. [Quantum-assisted learning of graphical models with arbitrary pairwise connectivity](https://arxiv.org/abs/1609.02542). *arXiv:1609.02542*, 2016. In probabilistic graphical models, both learning and inference are computationally expensive. This paper looks at how we can embed arbitrary graphs in a contemporary quantum annealing architecture to learn the structure of a model efficiently.
